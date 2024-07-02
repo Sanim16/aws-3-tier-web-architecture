@@ -32,7 +32,7 @@ resource "aws_lb_listener" "app_tier_internal_lb" {
 resource "aws_launch_template" "app_tier" {
   name = "app_tier"
 
-  image_id      = "ami-0dde48862e3a2ca8d"
+  image_id      = var.app_tier_ami
   instance_type = "t2.micro"
 
   iam_instance_profile {
@@ -89,7 +89,7 @@ resource "aws_lb_listener" "web_tier_external_lb" {
 resource "aws_launch_template" "web_tier" {
   name = "web_tier"
 
-  image_id      = "ami-040809c0f4a387466"
+  image_id      = var.web_tier_ami
   instance_type = "t2.micro"
 
   iam_instance_profile {
