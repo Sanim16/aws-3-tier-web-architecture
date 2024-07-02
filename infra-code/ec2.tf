@@ -1,22 +1,26 @@
-# data "aws_ami" "ubuntu" {
-#   most_recent = true
+data "aws_ami" "amazon_ami" {
+  most_recent = true
+  owners      = ["amazon"]
 
-#   filter {
-#     name   = "name"
-#     values = ["ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-*"]
-#   }
+  filter {
+    name   = "name"
+    values = ["al2023-ami-2023.*-x86_64"]
+  }
 
-#   filter {
-#     name   = "virtualization-type"
-#     values = ["hvm"]
-#   }
+  filter {
+    name   = "architecture"
+    values = ["x86_64"]
+  }
 
-#   owners = ["099720109477"] # Canonical
-# }
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
+
+}
 
 resource "aws_instance" "main" {
-  #   ami           = data.aws_ami.ubuntu.id
-  ami           = "ami-0195204d5dce06d99"
+  ami           = data.aws_ami.amazon_ami.id
   instance_type = "t2.micro"
   subnet_id     = aws_subnet.Private-App-Subnet-AZ-1.id
 
@@ -37,8 +41,7 @@ resource "aws_instance" "main" {
 }
 
 resource "aws_instance" "web_tier" {
-  #   ami           = data.aws_ami.ubuntu.id
-  ami           = "ami-0195204d5dce06d99"
+  ami           = data.aws_ami.amazon_ami.id
   instance_type = "t2.micro"
   subnet_id     = aws_subnet.Public-Web-Subnet-AZ-1.id
 
