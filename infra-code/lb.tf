@@ -29,10 +29,15 @@ resource "aws_lb_listener" "app_tier_internal_lb" {
   }
 }
 
+resource "aws_ami_from_instance" "app_tier" {
+  name               = "app_tier_ami"
+  source_instance_id = aws_instance.app_tier.id
+}
+
 resource "aws_launch_template" "app_tier" {
   name = "app_tier"
 
-  image_id      = var.app_tier_ami
+  image_id      = aws_ami_from_instance.app_tier.id
   instance_type = "t2.micro"
 
   iam_instance_profile {
@@ -86,10 +91,15 @@ resource "aws_lb_listener" "web_tier_external_lb" {
   }
 }
 
+resource "aws_ami_from_instance" "web_tier" {
+  name               = "web_tier_ami"
+  source_instance_id = aws_instance.web_tier.id
+}
+
 resource "aws_launch_template" "web_tier" {
   name = "web_tier"
 
-  image_id      = var.web_tier_ami
+  image_id      = aws_ami_from_instance.web_tier.id
   instance_type = "t2.micro"
 
   iam_instance_profile {
