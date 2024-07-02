@@ -1,3 +1,7 @@
+##New branch to implement everything with terraform
+This branch seeks to implement the whole workshop with only terraform and no manual steps
+I might need to add github-actions though.
+
 # aws-3-tier-web-architecture
 3 tier web Architecture deployed on AWS with Terraform
 
