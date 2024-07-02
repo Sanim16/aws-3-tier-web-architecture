@@ -1,4 +1,4 @@
-##New branch to implement everything with terraform
+## New branch to implement everything with terraform
 This branch seeks to implement the whole workshop with only terraform and no manual steps
 I might need to add github-actions though.
 
