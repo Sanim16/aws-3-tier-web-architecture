@@ -1,7 +1,7 @@
 locals {
-  variable1      = "admin"
-  variable2      = "your_password" #this is done for simplicity and should not be done in production
-  db_address     = aws_rds_cluster_instance.cluster_instances[0].endpoint
+  variable1  = "admin"
+  variable2  = "your_password" #this is done for simplicity and should not be done in production
+  db_address = aws_rds_cluster_instance.cluster_instances[0].endpoint
 }
 
 data "aws_ami" "amazon_ami" {

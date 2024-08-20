@@ -9,6 +9,16 @@ resource "aws_vpc" "aws_3_tier_architecture" {
   }
 }
 
+resource "aws_vpc" "aws_3_tier_architectures" {
+  cidr_block           = var.vpc_cidr
+  instance_tenancy     = "default"
+  enable_dns_hostnames = true
+
+  tags = {
+    Name = "aws_3_tier_architecture_vpc"
+  }
+}
+
 resource "aws_subnet" "Public-Web-Subnet-AZ-1" {
   vpc_id            = aws_vpc.aws_3_tier_architecture.id
   cidr_block        = "10.0.0.0/24"
